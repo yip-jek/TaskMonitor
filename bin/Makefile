@@ -1,9 +1,8 @@
 JAR        = jar
 JAR_FLAGS  = -cvfe
 
-des     = TaskMonitor
-des_jar = taskmonitor.jar
-objs    = $(wildcard *.class)
+des = TaskMonitor
+lib = 
 
 .PHONY: clean
 
