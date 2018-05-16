@@ -5,7 +5,9 @@ LOG_ID=100001
 #LOG4J_PROP=/home/ej/files/workspaces/TaskMonitor/etc/log4j.properties
 CFG=/home/ej/files/workspaces/TaskMonitor/etc/task_mon.cfg
 
+rm -f nohup.out
+
 #nohup java -jar ${BIN} ${LOG_ID} ${CFG} &
 #java -Dfile.encoding=UTF-8 -Dlog4j.configuration=${LOG4J_PROP} -Xbootclasspath/a:${CLASS_PATH} -jar ${BIN} ${LOG_ID} ${CFG}
-java -Xbootclasspath/a:${CLASS_PATH} -jar ${BIN} ${LOG_ID} ${CFG}
+nohup java -Xbootclasspath/a:${CLASS_PATH} -jar ${BIN} ${LOG_ID} ${CFG} &
 

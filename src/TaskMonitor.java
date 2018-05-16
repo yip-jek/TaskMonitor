@@ -38,8 +38,26 @@ public class TaskMonitor
 		PropertyConfigurator.configure("/home/ej/files/workspaces/TaskMonitor/etc/log4j2.properties");
 		Logger logger = LogManager.getLogger(TaskMonitor.class.getName());
 
-		logger.debug("Debug message.");
-		logger.error("Error message!");
+		final long SLP_SEC = 30;
+
+		for ( int i = 0; ; ++i )
+		{
+			logger.debug((i+1)+") Debug message.");
+			logger.error((i+1)+"> Error message!");
+
+			if ( (i % 100) == 0 )
+			{
+				break;
+				//try
+				//{
+				//	Thread.sleep(SLP_SEC*1000);
+				//}
+				//catch ( Exception e )
+				//{
+				//	e.printStackTrace();
+				//}
+			}
+		}
 
 		//System.out.println("[IN] LOG_ID: "+str[0]);
 		//System.out.println("[IN] CONFIG: "+str[1]);
