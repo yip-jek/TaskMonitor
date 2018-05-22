@@ -2,7 +2,6 @@ JAR        = jar
 JAR_FLAGS  = -cvfe
 
 des = TaskMonitor
-lib = 
 
 .PHONY: clean
 
