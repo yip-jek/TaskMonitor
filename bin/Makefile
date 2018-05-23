@@ -1,12 +1,15 @@
 JAR        = jar
-JAR_FLAGS  = -cvfe
+JAR_FLAGS  = -cvfm
 
-des = TaskMonitor
+mf  = MANIFEST.MF
+#des = TaskMonitor
+lib = lib/log4j-1.2.17.jar lib/db2jcc.jar lib/db2jcc_license_cu.jar
 
 .PHONY: clean
 
-$(des_jar): $(objs)
-	$(JAR) $(JAR_FLAGS) $@ $(des) $^
+$(des_jar): $(objs) $(lib)
+#$(JAR) $(JAR_FLAGS) $@ $(des) $^
+	$(JAR) $(JAR_FLAGS) $@ $(mf) $^
 
 clean:
 	@echo Deleting $(des_jar)

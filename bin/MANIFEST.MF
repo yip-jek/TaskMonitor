@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Created-By: 10.0.1 (Oracle Corporation)
+Main-Class: TaskMonitor
+Class-Path: lib/log4j-1.2.17.jar lib/db2jcc.jar lib/db2jcc_license_cu.jar
+
