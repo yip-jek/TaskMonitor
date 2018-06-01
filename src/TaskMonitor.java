@@ -53,6 +53,10 @@ public class TaskMonitor
 	{
 		m_taskDB2 = new TaskDB2(m_cfgProp);
 		m_taskDB2.Connect();
+
+		String test_sql = "select * from YJ_TEST order by ID";
+		m_taskDB2.TestSelectSQL(test_sql);
+
 		m_taskDB2.Disconnect();
 	}
 

@@ -3,6 +3,9 @@ import java.util.Properties;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 
 import org.apache.log4j.Logger;
 
@@ -73,6 +76,42 @@ public class TaskDB2
 		}
 
 		s_logger.info("<DB2:"+m_dbName+"> disconnected!");
+	}
+
+	public void TestSelectSQL(String sel_sql) throws SQLException
+	{
+		s_logger.info("Execute SQL: "+sel_sql);
+
+		PreparedStatement pstm = m_db2Conn.prepareStatement(sel_sql);
+		ResultSet         rs   = pstm.executeQuery();
+
+		StringBuffer      s_buf;
+		ResultSetMetaData rs_md = rs.getMetaData();
+
+		final int MAX_COLUMN_COUNT = rs_md.getColumnCount();
+		for ( int i = 1; i <= MAX_COLUMN_COUNT; ++i )
+		{
+			s_buf = new StringBuffer(i+") ");
+			s_buf.append("[Label="+rs_md.getColumnLabel(i)+"] ");
+			s_buf.append("[Name="+rs_md.getColumnName(i)+"] ");
+			s_buf.append("[Type="+rs_md.getColumnType(i)+"] ");
+			s_buf.append("[TypeName="+rs_md.getColumnTypeName(i)+"] ");
+			s_logger.info(s_buf.toString());
+		}
+
+		int rs_count = 0;
+		while ( rs.next() )
+		{
+			// 清空
+			s_buf = new StringBuffer(++rs_count+") ");
+
+			for ( int i = 1; i <= MAX_COLUMN_COUNT; ++i )
+			{
+				s_buf.append("["+rs.getString(i)+"] ");
+			}
+
+			s_logger.info(s_buf.toString());
+		}
 	}
 }
 
